@@ -1,0 +1,44 @@
+What is the Big O Notation ?
+Big O notation describes how an algorithm's running time or memory requirement grows
+as the input size n increases. It focuses on the dominant growth rate and ignores 
+constants and lower-order terms. This lets developers compare algorithms independently 
+of a particular computer or programming language.
+example:-
+O(1) - constant time: the work does not grow with the number of products.
+
+O(log n) - logarithmic time: each step removes a large portion of the remaining search space.
+
+O(n) - linear time: the number of inspected products may grow directly with catalog size.
+
+Search Cases
+
+Case
+
+            Linear Search                                     Binary Search
+
+Best   O(1): target is the first product.          O(1): target is at the middle index.
+
+Average O(n): approximately n/2 comparisons.       O(log n): search range is repeatedly halved.
+
+Worst   O(n): target is last or absent.            O(log n): target is found late or absent.
+
+Important condition :-
+     Binary Search works only when the product given for the comparison is in the sorted form
+     While Linear Search is compatible with the unsorted array
+
+Which one is Best?
+For repeated exact product-ID searches in a large in-memory catalog, 
+binary search is more suitable because O(log n) lookup scales much better than O(n). 
+The sorted array should be prepared once and reused sorting before every individual search would reduce the benefit.
+
+For a production e-commerce platform, customers also search by product name, 
+category, partial words, spelling variants, and filters.
+Those requirements are better served by a database index or a dedicated search engine.
+
+Conclusion:-
+          Linear search remains reasonable for very small or frequently changing collections,
+          while binary search is a strong fit for exact lookups on a maintained sorted array.
+    
+
+
+

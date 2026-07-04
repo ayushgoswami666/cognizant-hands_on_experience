@@ -1,0 +1,59 @@
+What Is Recursion?
+
+Ans :- Recursion is a technique in which a method solves a problem by calling itself with a smaller version of the same problem.
+       Every correct recursive method needs a base case that stops further calls and a recursive case that moves the input toward that base case.
+
+1. Base case: If zero forecast periods remain, return the current value.
+
+2. Recursive case: Grow the current value for one period, then forecast the remaining periods.
+
+3. Progress condition: The number of remaining periods decreases by one on each call.
+
+Why Recursion Fits This Problem ?
+
+Compound growth repeats the same operation for each period. If V is the current value and r is the decimal growth rate, 
+the next value is V x (1 + r).
+
+The recursive definition is:
+futureValue(V, r, 0) = V
+v = value
+r = rate
+n = no. of years
+
+futureValue(V, r, n) = futureValue(V * (1 + r), r, n - 1)
+
+For example:-
+         100,000 growing by 8% for three years becomes 100,000 x 1.08 x 1.08 x 1.08 = 125,971.20.
+
+ 
+Complexity Analysis:-
+
+Approach                         Time              Extra Space        Key Point
+
+Average historical rates         O(m)                O(1)           Reads m historical rates once.
+
+Recursive forecast               O(n)                O(n)           One call and one stack frame per year.
+
+Iterative forecast               O(n)                 O(1)          Same calculations without call-stack growth.
+
+Compound formula           Library-dependent          O(1)          Uses Math.pow and avoids application-level recursion.
+
+Here, m is the number of historical growth rates and 
+n is the number of forecast periods. The recursive algorithm does not branch, 
+so it does not have exponential time complexity. Its main cost is O(n) call-stack space.
+
+Optimization Strategies:-
+
+1. Calculate the expected growth rate once before recursion. Recomputing the average during every recursive call 
+   would add unnecessary repeated work.
+
+2. Use the iterative method for large period counts. It preserves O(n) time while reducing extra space 
+   from O(n) to O(1) and avoids StackOverflowError.
+ 
+3. Use the compound-growth formula when only the final value is required and a constant growth assumption is acceptable.
+
+4. Use memoization only when a more complex forecast repeatedly requests the same period or contains overlapping 
+   recursive subproblems. The simple one-path recursion above does not benefit meaningfully from caching.
+
+5. For financial production systems, consider BigDecimal and an explicit rounding policy instead of double 
+   when exact currency precision is required.
